@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model SiteOfSweetsApp.Models.HomeViewData
+<link href="~/css/Style.css" rel="stylesheet">
+
+<h1>
+<div class="text-center">
+    <table class="Title">
+        <tr>
+            <td rowspan="2"><img src="~/img/CakeShop.jpg"  class="img-TitleTop"></td>
+            <td><img src="~/img/Title.jpg" class="img-TitleLogo"></td>
+        </tr>
+        <tr>
+            <td>
+
+                <form action="/Home/Main" method="post" class="search-form">
+                    <label>
+                        <input type="text" placeholder="住所を入力" name="Search">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>            
+            </td>
+        </tr>
+    </table>
+</div>
+</h1>
+<div>
+    <table class="List">
+        @foreach (var item in Model.placedata)
+        {
+            <tr>
+                <td rowspan="3" class="td-ShopPhoto"><img src="@item.Photo_URL" class="img-ShopPhoto" alt="picture"></td>
+                <td colspan="3" class="td-ShopName"><a href="@item.Place_URL" target="_blank">@item.Name</a></td>
+                <td class="td-Root"><a href="@item.Direction_Working_URL" class="btn-gradient-radius" target="_blank">徒歩での道順</a></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="td-Rank">@item.rating</td>
+                <td rowspan="2" class="td-Star">
+                @if(item.rating == 0.0) { <img src="~/img/Star_0.0.jpg"> }
+                else if(item.rating > 0.0 && item.rating < 0.7) { <img src="~/img/Star_0.5.jpg"> }
+                else if(item.rating > 0.7 && item.rating < 1.2) { <img src="~/img/Star_1.0.jpg"> }
+                else if(item.rating > 1.2 && item.rating < 1.7) { <img src="~/img/Star_1.5.jpg"> }
+                else if(item.rating > 1.7 && item.rating < 2.2) { <img src="~/img/Star_2.0.jpg"> }
+                else if(item.rating > 2.2 && item.rating < 2.7) { <img src="~/img/Star_2.5.jpg"> }
+                else if(item.rating > 2.7 && item.rating < 3.2) { <img src="~/img/Star_3.0.jpg"> }
+                else if(item.rating > 3.2 && item.rating < 3.7) { <img src="~/img/Star_3.5.jpg"> }
+                else if(item.rating > 3.7 && item.rating < 4.2) { <img src="~/img/Star_4.0.jpg"> }
+                else if(item.rating > 4.2 && item.rating < 5.0) { <img src="~/img/Star_4.5.jpg"> }
+                else { <img src="~/img/Star_5.0.jpg"> }
+                </td>
+                <td rowspan="2" class="td-Address">@item.Address</td>
+                <td class="td-Root"><a href="@item.Direction_Cycling_URL"  class="btn-gradient-radius" target="_blank">自転車での道順</a></td>
+            </tr>
+            <tr>
+                <td class="td-Root"><a href="@item.Direction_Driving_URL"  class="btn-gradient-radius" target="_blank">車での道順</a></td>
+            </tr>
+       }
+    </table>
+</div>

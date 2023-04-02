@@ -1,0 +1,50 @@
+﻿@*
+    ログイン画面
+*@
+@model SiteOfSweetsApp.Models.LoginViewData
+<html>
+<link href="~/css/Style.css" rel="stylesheet">
+    <head>
+        <title>ログイン画面</title>
+    </head>
+    <body>
+        
+        <form action="/Home/Login" method="post" class="login-form">
+            <table class="Table-FormTitle">
+                <tr>
+                    <td>ログイン</td>
+                </tr>
+            </table>
+            <table class="Table-Form">
+                <tr>
+                    <td class="td-title">ユーザＩＤ</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="UserID"  placeholder="UserID" value="@Model.UserID"></td>
+                </tr>
+                <tr>
+                    <td class="td-title">パスワード</td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="Password"  placeholder="Password" value="@Model.Password"></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn-gradient-radius">ログイン</button></td>
+                </tr>
+                <tr>
+                    <td colspan="3">@Model.SystemMessage</td>
+                </tr>
+            </table>            
+        </form>
+        <form action="/Home/Login" method="post" class="login-form">
+            <table class="Table-FormGuestButton">
+                <tr>
+                    <td><button type="submit" class="btn-gradient-radius">ゲストアカウントでログイン</button></td>
+                </tr>
+            </table>
+            <input type="hidden" name="UserID"  placeholder="UserID" value="Guest">
+            <td><input type="hidden" name="Password"  placeholder="Password" value="Guest_Password"></td>
+        </form>
+
+    </body>
+</html>
